@@ -6,16 +6,16 @@ import unittest
 # Make the super class importable
 sys.path.append(os.path.dirname(__file__))
 
-import arff
-import numpy as np
-from scipy import sparse
-from sklearn.preprocessing.imputation import Imputer
+import arff  # noqa: E402
+import numpy as np  # noqa: E402
+from scipy import sparse  # noqa: E402
+from sklearn.impute import SimpleImputer  # noqa: E402
 
-from autosklearn.pipeline.implementations.OneHotEncoder import OneHotEncoder
-from sklearn.preprocessing import StandardScaler
+from autosklearn.pipeline.implementations.OneHotEncoder import OneHotEncoder  # noqa: E402
+from sklearn.preprocessing import StandardScaler  # noqa: E402
 
-import autosklearn.metalearning.metafeatures.metafeatures as meta_features
-import test_meta_features
+import autosklearn.metalearning.metafeatures.metafeatures as meta_features  # noqa: E402
+import test_meta_features  # noqa: E402
 
 
 class SparseMetaFeaturesTest(test_meta_features.MetaFeaturesTest,
@@ -52,7 +52,7 @@ class SparseMetaFeaturesTest(test_meta_features.MetaFeaturesTest,
         ohe = OneHotEncoder(self.categorical)
         X_transformed = X_sparse.copy()
         X_transformed = ohe.fit_transform(X_transformed)
-        imp = Imputer(copy=False)
+        imp = SimpleImputer(copy=False)
         X_transformed = imp.fit_transform(X_transformed)
         standard_scaler = StandardScaler(with_mean=False)
         X_transformed = standard_scaler.fit_transform(X_transformed)
